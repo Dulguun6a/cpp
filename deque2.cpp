@@ -17,8 +17,7 @@ struct Deque{
     void push_back(type x){
         node *p = new node;
         p -> data = x;
-        p -> prev = nullptr;
-        p -> next = tail;
+        p -> next = nullptr;
         if(tail == nullptr){
         tail = head = p;
         }else{
@@ -29,8 +28,7 @@ struct Deque{
     void push_front(type x){
         node *p = new node;
         p -> data = x;
-        p -> prev = head;
-        p -> next = nullptr;
+        p -> prev = nullptr;
         if(tail == nullptr){
         tail = head = p;
         }else{
@@ -42,11 +40,21 @@ struct Deque{
         node *p = head;
         head = head -> next;
         delete p;
+        if(head == nullptr){
+            tail = nullptr;
+        } else {
+            head -> prev = nullptr;
+        }
     }
     void pop_back(){
         node *p = tail;
         tail = tail -> prev;
         delete p;
+        if(tail == nullptr){
+            head = nullptr;
+        } else {
+            tail -> next = nullptr;
+        }
     }
     type front(){
         return head -> data;
@@ -62,8 +70,8 @@ struct Deque{
 int main(){
     Deque <int> s;
     s.push_front(40);
-    s.push_front(30);
-    cout << s.back();
-    s.pop_front();
-    cout << endl << s.front();
+    s.push_back(30);
+    s.push_front(20);
+    s.pop_back();
+    cout  << s.back() << endl;
 }

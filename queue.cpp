@@ -44,5 +44,4 @@ int main(){
     cout << s.front() << endl << s.empty() << endl;
     s.pop();
     cout << s.front();
-    
 }
