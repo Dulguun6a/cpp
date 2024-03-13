@@ -2,7 +2,7 @@
 using namespace std;
 
 template <class type>
-struct deque{
+struct Deque{
     struct node{
         type data;
         node* prev;
@@ -12,7 +12,7 @@ struct deque{
     node* head;
     node* tail;
 
-    deque(){
+    Deque(){
         tail = nullptr;
         head = nullptr;
     }
@@ -20,7 +20,8 @@ struct deque{
     void push_front(type x){
         node* p = new node;
         p -> data = x;
-        p -> next = nullptr;
+        p -> next = head;
+        p -> prev = nullptr;
         if (tail == nullptr){
             head = tail = p;
         }else{
@@ -32,7 +33,8 @@ struct deque{
     void push_back(type x){
         node* p = new node;
         p -> data = x;
-        p -> prev = nullptr;
+        p -> prev = tail;
+        p -> next = nullptr;
         if (head == nullptr){
             tail = head = p;
         }else{
@@ -80,15 +82,15 @@ struct deque{
 };
 
 int main(){
-    deque<int> q;
-    q.push_front(10);
-    q.push_back(20);
-    cout << q.front() << endl;
-    cout << q.back() << endl;
-    q.pop_front();
-    q.push_back(1);
-    cout << q.front() << endl;
-    cout << q.back() << endl;
+    Deque <int> s;
+    s.push_front(10);
+    s.push_back(20);
+    cout << s.front() << endl;
+    cout << s.back() << endl;
+    s.pop_front();
+    s.push_back(1);
+    cout << s.front() << endl;
+    cout << s.back() << endl;
 
     return 0;
 }

@@ -14,21 +14,30 @@ struct Queue{
         head = nullptr;
     }
     void push(type x){
-        node *p = new node;
+        node* p = new node;
         p -> data = x;
-        p -> next = head;
-        if(tail == nullptr){
-        tail = head = p;
+        p -> next = nullptr;
+        if (tail == nullptr){
+            head = tail = p;
         }else{
-            p -> next = head;
-            head = p;
+            tail -> next = p;
+            tail = p;
         }
     }
     void pop(){
-        node *p = head;
+        if (tail == nullptr){
+            return;
+        }
+        node* p = head;
         head = head -> next;
+        if (head != nullptr){
+        head -> next = nullptr;
+        }else{
+            tail = nullptr;
+        }
         delete p;
     }
+
     type front(){
         return head -> data;
     }
@@ -41,7 +50,9 @@ int main(){
     Queue <int> s;
     s.push(30);
     s.push(40);
-    cout << s.front() << endl << s.empty() << endl;
+    cout << s.front() << endl;
     s.pop();
-    cout << s.front();
+    cout << s.front() << endl;
+    s.pop();
+    cout << s.empty();
 }
